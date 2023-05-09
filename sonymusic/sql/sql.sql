@@ -1,4 +1,4 @@
-drop database generique_heritage_sony_music;
+drop database heritage_sony_music;
 drop database if exists heritage_sony_music;
 create database heritage_sony_music;
 use heritage_sony_music;
@@ -285,6 +285,9 @@ call insertLabel("DUGIMONT", "pdugimont@gmail.com", "12345", "0668571291", "labe
 call insertPartenaire("CHARDON", "jchardon@gmail.com", "234", "76493475", "partenaire", "Paris", "jc", "juliachardon.fr", 10, "physique");
 call insertAgent("Dugimont", "garancedugimont@gmail.com", "1234", "0668571291", "agent", "Garance", "2022-12-12", 2);
 call insertArtiste("MENDY", "dmendy@gmail.com", "4567", "875745745", "artiste", "David", "DaveLeBg", "Rap FR", 4, "DaveLeBg.png");
+
+call insertAgent("tdb", "tdb@gmail.com", "1234", "12356", "agent", "tdb", "2022-12-13", 9);
+
 
 /*Création de l'album pour l'artiste créé et d'une chanson*/
 insert into album values(null, "Balade sur la plage", 2021, 5);
