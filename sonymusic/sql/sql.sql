@@ -96,8 +96,7 @@ create table vente(
     foreign key (idalbum) references album(idalbum)
 );
 
-    --Procédures d'insert
-----Insertion de label
+
 drop procedure if exists insertLabel;
 delimiter $
 create procedure insertLabel(IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(250), p_telephone varchar(50), IN p_role varchar(50) , IN p_adresse varchar(250), IN p_nbEmployes int(6)) 
@@ -113,7 +112,6 @@ End $
 delimiter ; 
 
 
-----Insertion de Partenaire
 drop procedure if exists insertPartenaire;
 delimiter $
 create procedure insertPartenaire (IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(250), p_telephone varchar(50), IN p_role varchar(50) , IN p_adresse varchar(250), IN p_sigle varchar(50), IN p_url varchar(250), p_nbSites int(6), p_statut varchar(50)) 
@@ -127,7 +125,7 @@ Begin
         insert into partenaire values (p_iduser, p_adresse, p_sigle, p_url, p_nbSites, p_statut);
 End $
 delimiter ;
-----Insertion d'Agent
+
 drop procedure if exists insertAgent;
 
 delimiter $
@@ -143,7 +141,7 @@ Begin
 End $
 delimiter  ;
 
-----Insertion d'Artiste
+
 drop procedure if exists insertArtiste;
 
 delimiter $
@@ -158,8 +156,7 @@ Begin
         insert into artiste values (p_iduser, p_prenom, p_nomDeScene, p_typePrincipal, p_idagent, p_images);
 End $
 delimiter  ;
-    --Procédures de suppression
-----Suppression de Label
+   
 drop procedure if exists deleteLabel;
 delimiter $
 create procedure deleteLabel(IN p_iduser int(3)) 
@@ -169,7 +166,7 @@ Begin
 End $
 delimiter ;
 
-----Suppression de Partenaire
+
 drop procedure if exists deletePartenaire;
 delimiter $
 create procedure deletePartenaire(IN p_iduser int(3)) 
@@ -179,7 +176,7 @@ Begin
 End $
 delimiter ;
 
-----Suppression d'Agent
+
 drop procedure if exists deleteAgent;
 delimiter $
 create procedure deleteAgent(IN p_iduser int(3)) 
@@ -189,7 +186,7 @@ Begin
 End $
 delimiter ;
 
-----Suppression d'Artiste
+
 drop procedure if exists deleteArtiste;
 delimiter $
 create procedure deleteArtiste(IN p_iduser int(3)) 
@@ -199,8 +196,7 @@ Begin
 End $
 delimiter ;
 
-    --Procédures d'édition
-----Edition de Label
+    
 drop procedure if exists updateLabel;
 delimiter $
 create procedure updateLabel(IN p_iduser int(3), IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(250), p_telephone varchar(50), IN p_role varchar(50) , IN p_adresse varchar(250), IN p_nbEmployes int(6))
@@ -212,7 +208,7 @@ Begin
 End $
 delimiter ;
 
-----Edition de Partenaire
+
 drop procedure if exists updatePartenaire;
 delimiter $
 create procedure updatePartenaire(IN p_iduser int(3), IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(250), p_telephone varchar(50), IN p_role varchar(50) , IN p_adresse varchar(250), IN p_sigle varchar(50), IN p_url varchar(250), p_nbSites int(6), p_statut varchar(50))
@@ -224,7 +220,7 @@ Begin
 End $
 delimiter ;
 
-----Edition d'Agent
+
 drop procedure if exists updateAgent;
 delimiter $
 create procedure updateAgent(IN p_iduser int(3), IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(250), p_telephone varchar(50), IN p_role varchar(50) , IN p_prenom varchar(250), IN p_dateEmbauche date, IN p_idlabel int(3))
@@ -236,7 +232,6 @@ Begin
 End $
 delimiter ;
 
-----Edition d'Artiste
 drop procedure if exists updateArtiste;
 delimiter $
 create procedure updateArtiste(IN p_iduser int(3), IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(50), p_telephone varchar(50), IN p_role varchar(50) , IN p_prenom varchar(50), IN p_nomDeScene varchar(50), IN p_typePrincipal varchar(50), IN p_idagent int(3), IN p_images varchar(250))
@@ -249,48 +244,44 @@ End $
 delimiter ;
 
 
-    --Vues des Procédures
---Label
+   
 drop view if exists vueLabels;
 create view vueLabels as (
 	select u.*, l.adresse, l.nbEmployes from user u, label l where u.iduser=l.iduser
 );
 
---Partenaire
+
 drop view if exists vuePartenaires;
 create view vuePartenaires as (
 	select u.*, p.adresse, p.sigle, p.url, p.nbSites, p.statut from user u, partenaire p where u.iduser=p.iduser
 );
 
---Agent
+
 drop view if exists vueAgents;
 create view vueAgents as (
 	select u.*, a.prenom, a.dateEmbauche, a.idlabel from user u, agent a where u.iduser=a.iduser
 );
 
---Artiste
+
 drop view if exists vueArtistes;
 create view vueArtistes as (
 	select u.*, a.prenom, a.nomDeScene, a.typePrincipal, a.idagent, a.images from user u, artiste a where u.iduser=a.iduser
 );
 
 
-/*Création d'un admin, cet utilisateur n'existe que dans la table User*/
 insert into user values(null, "Admin", "admin@gmail.com", "123", "0668571291", "admin");
-/*Création d'une catégorie*/
+
 insert into categorie values (null, "RAP FR"), (null, "POP");
 
-/*Création de chaque User*/
+
 call insertLabel("DUGIMONT", "pdugimont@gmail.com", "12345", "0668571291", "label", "Vitry-sur-Seine", 250);
 call insertPartenaire("CHARDON", "jchardon@gmail.com", "234", "76493475", "partenaire", "Paris", "jc", "juliachardon.fr", 10, "physique");
 call insertAgent("Dugimont", "garancedugimont@gmail.com", "1234", "0668571291", "agent", "Garance", "2022-12-12", 2);
 call insertArtiste("MENDY", "dmendy@gmail.com", "4567", "875745745", "artiste", "David", "DaveLeBg", "Rap FR", 4, "DaveLeBg.png");
 
-call insertAgent("tdb", "tdb@gmail.com", "1234", "12356", "agent", "tdb", "2022-12-13", 9);
 
 
-/*Création de l'album pour l'artiste créé et d'une chanson*/
 insert into album values(null, "Balade sur la plage", 2021, 5);
 insert into chanson values(null, "Coucou c'est moi, Dave", "2021-04-16", "2m55", 1, 1);
-/*Enregistrement des ventes pour cet album*/
+
 insert into vente values(null, 25000, 2.33, now(), 3, 1);

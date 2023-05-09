@@ -1,7 +1,7 @@
-drop database sony_music_CL;
-drop database if exists sony_music_CL;
-create database sony_music_CL;
-use sony_music_CL;
+drop database heritage_sony_music;
+drop database if exists heritage_sony_music;
+create database heritage_sony_music;
+use heritage_sony_music;
 
 
 create table user(
