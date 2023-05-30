@@ -12,6 +12,9 @@ $lesAlbums = $unControleur->selectAll();
             case 'sup':
                 $chaine = "idalbum=".$idalbum;
                 $unControleur->delete($chaine);
+
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+            echo "<script>document.location.href='index.php?page=9';</script>";
             break;
             case 'edit':
                 $chaine= "idalbum=".$idalbum;
@@ -54,7 +57,9 @@ $lesAlbums = $unControleur->selectAll();
         ); 
         $chaine= "idalbum=".$idalbum;
         $unControleur->update($tab, $chaine);
-        header("Location: index.php?page=9");
+        
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=9';</script>";
     }
     if(isset($_POST['Filtrer'])){
         $unControleur->setTable ("album");

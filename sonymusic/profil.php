@@ -1,5 +1,6 @@
 <h3> Gérer votre compte </h3>
 <p>Vous pouvez voir votre profil, et le modifier si vous le désirer</p>
+</br>
 <form method="post">
     <table>
         <tr>
@@ -116,7 +117,9 @@
                                 "dateEmbauche"=> $_POST['dateEmbauche'],
                                 "idlabel"=> $_POST['idlabel'] );
                             $unControleur->callProcedure("updateAgent", $tab);
-                            header("Location: index.php?page=7");
+                            
+                            //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                            echo "<script>document.location.href='index.php?page=7';</script>";
                         }
                     }
                 }
@@ -159,7 +162,8 @@
                                 "typePrincipal"=> $_POST['typePrincipal'],
                                 "idagent"=> $_POST['idagent'] );
                             $unControleur->callProcedure("updateArtiste", $tab);
-                            header("Location: index.php?page=7");
+                            //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                            echo "<script>document.location.href='index.php?page=7';</script>";
                         }
                     }
                 }
@@ -171,7 +175,8 @@
                 </tr>";
                 if(isset($_POST['ModifierAdmin'])){
                     $unControleur->modifierAdmin($_POST);
-                    //header("Location: index.php?page=7");
+                    ////Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                    echo "<script>document.location.href='index.php?page=7';</script>";
                 }
             }
         ?>

@@ -12,6 +12,9 @@ $lesVentes = $unControleur->selectAll();
             case 'sup':
                 $chaine = "idvente=".$idvente;
                 $unControleur->delete($chaine);
+
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                echo "<script>document.location.href='index.php?page=11';</script>";
             break;
             case 'edit':
                 $chaine= "idvente=".$idvente;
@@ -60,7 +63,10 @@ $lesVentes = $unControleur->selectAll();
         ); 
         $chaine= "idvente=".$idvente;
         $unControleur->update($tab, $chaine);
-        header("Location: index.php?page=11");
+        
+        
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=11';</script>";
     }
     if(isset($_POST['Filtrer'])){
         $unControleur->setTable ("vente");

@@ -12,10 +12,12 @@ $lesCategories = $unControleur->selectAll();
             case 'sup':
                 $chaine = "idcategorie=".$idcategorie;
                 $unControleur->delete($chaine);
+
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                echo "<script>document.location.href='index.php?page=8';</script>";
             break;
             case 'edit':
                 $chaine= "idcategorie=".$idcategorie;
-                var_dump($chaine);
                 $laCategorie=$unControleur->selectWhere($chaine);
             break;
         }
@@ -43,7 +45,9 @@ $lesCategories = $unControleur->selectAll();
         "type"=>$_POST['type']); 
         $chaine= "idcategorie=".$idcategorie;
         $unControleur->update($tab, $chaine);
-        header("Location: index.php?page=8");
+        
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=8';</script>";
     }
     if(isset($_POST['Filtrer'])){
         $mot = $_POST['mot'];

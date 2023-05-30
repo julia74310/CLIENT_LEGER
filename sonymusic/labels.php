@@ -12,6 +12,9 @@ $lesLabels = $unControleur->selectAll();
             case 'sup':
                 $tab = array("iduser"=>$iduser);
                 $unControleur->callProcedure("deleteLabel",$tab);
+
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                echo "<script>document.location.href='index.php?page=1';</script>";
             break;
             case 'edit':
                 $chaine= "iduser=".$iduser;
@@ -31,7 +34,6 @@ $lesLabels = $unControleur->selectAll();
         "adresse"=>$_POST['adresse'],
          "nbEmployes"=>$_POST['nbEmployes']); 
          $unControleur->callProcedure("insertLabel", $tab);
-
        /*  //je vérifie la présence d'un user avec le meme email 
          if
          // si c'est le cas : erreur 
@@ -53,7 +55,9 @@ $lesLabels = $unControleur->selectAll();
         "adresse"=>$_POST['adresse'],
          "nbEmployes"=>$_POST['nbEmployes']); 
         $unControleur->callProcedure("updateLabel", $tab);
-        header("Location: index.php?page=1");
+
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=1';</script>";
     }
     if(isset($_POST['Filtrer'])){
         $mot = $_POST['mot'];

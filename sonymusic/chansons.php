@@ -12,6 +12,9 @@ $lesChansons = $unControleur->selectAll();
             case 'sup':
                 $chaine = "idchanson=".$idchanson;
                 $unControleur->delete($chaine);
+
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                echo "<script>document.location.href='index.php?page=10';</script>";
             break;
             case 'edit':
                 $chaine= "idchanson=".$idchanson;
@@ -60,7 +63,9 @@ $lesChansons = $unControleur->selectAll();
         ); 
         $chaine= "idchanson=".$idchanson;
         $unControleur->update($tab, $chaine);
-        header("Location: index.php?page=10");
+       
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=10';</script>";
     }
     if(isset($_POST['Filtrer'])){
         $unControleur->setTable ("chanson");

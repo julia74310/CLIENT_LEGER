@@ -12,6 +12,9 @@ $lesPartenaires = $unControleur->selectAll();
             case 'sup':
                 $tab = array("iduser"=>$iduser);
                 $unControleur->callProcedure("deletePartenaire",$tab);
+
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                echo "<script>document.location.href='index.php?page=2';</script>";
             break;
             case 'edit':
                 $chaine= "iduser=".$iduser;
@@ -59,7 +62,9 @@ $lesPartenaires = $unControleur->selectAll();
         "nbSites"=>$_POST['nbSites'],
         "statut"=>$_POST['statut']); 
         $unControleur->callProcedure("updatePartenaire", $tab);
-        header("Location: index.php?page=2");
+
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=2';</script>";
     }
     if(isset($_POST['Filtrer'])){
         $mot = $_POST['mot'];

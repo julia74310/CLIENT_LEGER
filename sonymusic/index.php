@@ -97,7 +97,8 @@
                     $_SESSION['telephone']=$unUser['telephone'];
                     $_SESSION['role']=$unUser['role'];
                     //On recharge la page vers home
-                    header("Location: index.php?page=0");
+                    //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                    echo "<script>document.location.href='index.php?page=0';</script>";
 
                 }
             }
@@ -122,7 +123,8 @@
                 case 5:
                     session_destroy(); 
                     unset($_SESSION);
-                    header("Location: index.php");
+                    //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                    echo "<script>document.location.href='index.php';</script>";
                 break;
                 case 6:
                     require_once("cgu.php");

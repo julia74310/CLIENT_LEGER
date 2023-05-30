@@ -10,7 +10,9 @@
             case 'sup':
                 $tab = array("iduser"=>$iduser);
                 $unControleur->callProcedure("deleteAgent", $tab);
-                header("Location: index.php?page=3");
+                
+                //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+                echo "<script>document.location.href='index.php?page=3';</script>";
             break;
             case 'edit':
                 $lAgent=$unControleur->selectWhere($iduser);
@@ -45,7 +47,9 @@
             "dateEmbauche"=> $_POST['dateEmbauche'],
             "idlabel"=> $_POST['idlabel'] );
         $unControleur->callProcedure("updateAgent", $tab);
-        header("Location: index.php?page=3");
+        
+        //Le header Location en php ne fonctionne pas correctement, remplacement par javascript
+        echo "<script>document.location.href='index.php?page=3';</script>";
     }
 
 
