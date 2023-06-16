@@ -10,7 +10,7 @@
             <td><input type="text" name="nom" placeholder="Donnez un nom..." value="<?= ($lArtiste!=null)?$lArtiste['nom']:'' ?>" ></td>
         </tr>
         <tr>
-            <td><input type="text" name="email" placeholder="Donnez un Email..." value="<?= ($lArtiste!=null)?$lArtiste['email']:'' ?>" ></td>
+            <td><input type="text" name="email" placeholder="Donnnez un Email..." value="<?= ($lArtiste!=null)?$lArtiste['email']:'' ?>" ></td>
         </tr>
         <tr>
             <td><input type="text" name="telephone" placeholder="Donnez un téléphone..." value="<?= ($lArtiste!=null)?$lArtiste['telephone']:'' ?>" ></td>
