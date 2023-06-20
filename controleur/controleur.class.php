@@ -44,6 +44,12 @@ class Controleur{
     public function selectUser($email, $mdp){
 		return $this->unModele->selectUser($email, $mdp);
 	}
+    public function recupCAVentes(){
+        return $this->unModele->recupCAVentes();
+    }
+    public function recupNbVentes(){
+        return $this->unModele->recupNbVentes();
+    }
 }
 
 ?>

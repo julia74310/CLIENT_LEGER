@@ -10,9 +10,30 @@ create table user(
     email varchar(255),
     mdp varchar(255),
     telephone varchar(50),
-    role enum("admin", "artiste", "partenaire", "agent", "label"),
+    role enum("admin", "artiste", "partenaire", "agent", "label", "dirigeant"),
     primary key (iduser)
 );
+
+create table dirigeant(
+    iduser int(3) not null,
+    fonction varchar(100) not null,
+    primary key(iduser),
+    foreign key(iduser) references user(iduser)
+);
+
+drop procedure if exists insertDirigeant;
+delimiter $
+create procedure insertDirigeant(IN p_nom varchar(100), IN p_email varchar(250), IN p_mdp varchar(250), p_telephone varchar(50), IN p_role varchar(50) , IN p_fonction varchar(100)) 
+Begin 
+        Declare p_iduser int(3); 
+        
+        insert into user values (null, p_nom, p_email, p_mdp, p_telephone, p_role); 
+        select iduser into p_iduser 
+        from user 
+        where nom = p_nom and email=p_email and mdp=p_mdp and telephone =p_telephone and role= p_role; 
+        insert into dirigeant values (p_iduser, p_fonction);
+End $
+delimiter ;
 
 
 create table label(
@@ -89,6 +110,7 @@ create table vente(
     nbVente int(6) not null,
     prixParVente float,
     date date,
+    type enum("physique", "digitale"),
     idpartenaire int(3) not null,
     idalbum int(3) not null,
     primary key (idvente),
@@ -286,8 +308,23 @@ call insertPartenaire("CHARDON", "jchardon@gmail.com", "234", "76493475", "parte
 call insertAgent("Dugimont", "garancedugimont@gmail.com", "1234", "0668571291", "agent", "Garance", "2022-12-12", 2);
 call insertArtiste("MENDY", "dmendy@gmail.com", "4567", "875745745", "artiste", "David", "DaveLeBg", "Rap FR", 4, "DaveLeBg.png");
 
+
 /*Création de l'album pour l'artiste créé et d'une chanson*/
 insert into album values(null, "Balade sur la plage", 2021, 5);
 insert into chanson values(null, "Coucou c'est moi, Dave", "2021-04-16", "2m55", 1, 1);
 /*Enregistrement des ventes pour cet album*/
-insert into vente values(null, 25000, 2.33, now(), 3, 1);
+insert into vente values(null, 25000, 2.33, now(), "physique", 3, 1);
+
+
+create view vueCAVentes as(
+    select va.nomDeScene, SUM(v.prixParVente*v.nbVente) as CA from vente v, album alb, vueArtistes va where v.idalbum=alb.idalbum and alb.idartiste=va.iduser ORDER BY CA desc
+);
+create view vueNbVentes as(
+    select va.nomDeScene, SUM(v.nbVente) as nbVentesTotale from vente v, album alb, vueArtistes va where v.idalbum=alb.idalbum and alb.idartiste=va.iduser and v.type="digitale" ORDER BY nbVentesTotale desc
+);
+
+call insertDirigeant("GARCIA", "cgarcia@gmail.com", "12345", "0654325809", "dirigeant", "PDG");
+call insertArtiste("LEVY", "dlvey@gmail.com", "5678", "98569876", "artiste", "Dan", "Dannn", "Rock", 4, '');
+insert into album values(null, "Calo", 2023, 7);
+insert into chanson values(null, "CaloTitre", now(), "2m36", 2, 2);
+insert into vente values(null, 4567, 5.67, now(), "digitale", 3, 2);

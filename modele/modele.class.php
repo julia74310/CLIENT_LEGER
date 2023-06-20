@@ -153,7 +153,33 @@
               {
                   return null;
               }
-          }
+        }
+        public	function recupCAVentes(){
+            $requete="select * from vueCAVentes;";
+            if($this->unPDO !=null)
+              {
+                $select=$this->unPDO->prepare($requete);  
+                  $select->execute();
+                  
+                  return $select->fetchAll();
+              }else
+              {
+                  return null;
+              }
+        }
+        public	function recupNbVentes(){
+            $requete="select * from vueNbVentes;";
+            if($this->unPDO !=null)
+              {
+                $select=$this->unPDO->prepare($requete);  
+                  $select->execute();
+                  
+                  return $select->fetchAll();
+              }else
+              {
+                  return null;
+              }
+        }
 
         
     }
