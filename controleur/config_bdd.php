@@ -1,6 +1,6 @@
 <?php
-	$serveur ="localhost:3307";
+	$serveur ="172.20.0.111";
 	$bdd ="heritage_sony_music";
 	$user ="root";
-	$mdp="";
+	$mdp="btssio2023";
 ?>

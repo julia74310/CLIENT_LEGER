@@ -67,14 +67,6 @@
         <a href="index.php?page=7">
             <img src="images/profil.png" width="50" height="50" /> <p> Profil </p>
         </a>
-        <?php
-        if($_SESSION['role']=='dirigeant'){
-            echo '<a href="index.php?page=20">
-            <img src="images/stats.jpg" width="50" height="50" /> <p> Stats </p>
-          </a>';
-        }
-            
-        ?>
         </div>
               </div>
             </div>
@@ -151,9 +143,6 @@
                 break;
                 case 11:
                     require_once("ventes.php");
-                break;
-                case 20:
-                    require_once("statsArtistes.php");
                 break;
             }
         ?>

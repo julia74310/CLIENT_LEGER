@@ -25,7 +25,6 @@
 		</tr>
 		<tr>
 			<?php
-			
 				foreach($lesPartenaires as $unPartenaire){
 					echo "<tr>";
 					echo "<td>".$unPartenaire['iduser']."</td>";

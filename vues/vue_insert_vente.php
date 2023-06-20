@@ -30,14 +30,6 @@
         </tr>
         <tr>
             <td>
-                <select name="type">
-                    <option value="physique"> Physique </option>
-                    <option value="digitale"> Digitale </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <select name="idalbum">
                     <?php
                         foreach($lesAlbums as $unAlbum){
