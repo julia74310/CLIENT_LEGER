@@ -51,6 +51,12 @@
             <?= ($lePartenaire!=null) ? 'name="Modifier" value="Modifier"' :
                  'name="Valider" value="Valider"' ?>>
             </td>
+
+            <td>
+                <a href="index.php?page=12">
+                <input class="btn btn-primary" type="button" name="Rechercher" value="Rechercher"/>
+                </a>
+            </td>
         </tr>
         <?= ($lePartenaire!=null)?'<input type="hidden" name="iduser" value="'.$lePartenaire['iduser'].'">':''?>
     </table>

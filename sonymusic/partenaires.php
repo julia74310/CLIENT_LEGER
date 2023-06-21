@@ -22,18 +22,9 @@ $lesPartenaires = $unControleur->selectAll();
 
 
     require_once("vues/vue_insert_partenaire.php");
-    if (isset($_POST['Valider'])){
-        $tab = array("nom"=>$_POST['nom'],
-        "email"=>$_POST['email'],
-        "mdp"=>$_POST['mdp'],
-        "telephone"=>$_POST['telephone'],
-        "role"=>$_POST['role'],
-        "adresse"=>$_POST['adresse'],
-        "sigle"=>$_POST['sigle'],
-        "url"=>$_POST['url'],
-         "nbSites"=>$_POST['nbSites'],
-         "statut"=>$_POST['statut']); 
-         $unControleur->callProcedure("insertPartenaire", $tab);
+    
+
+
 
        /*  //je vérifie la présence d'un user avec le meme email 
          if
@@ -44,7 +35,23 @@ $lesPartenaires = $unControleur->selectAll();
          //sinon on appelle la procédure 
         $unControleur->callProcedure("insertLabel", $tab);
          }*/
+    
+
+    if (isset($_POST['Rechercher'])){
+        $tab = array("nom"=>$_POST['nom'],
+        "email"=>$_POST['email'],
+        "mdp"=>$_POST['mdp'],
+        "telephone"=>$_POST['telephone'],
+        "role"=>$_POST['role'],
+        "adresse"=>$_POST['adresse'],
+        "sigle"=>$_POST['sigle'],
+        "url"=>$_POST['url'],
+         "nbSites"=>$_POST['nbSites'],
+         "statut"=>$_POST['statut']); 
+         $unControleur->callProcedure("selectPartenaire", $nom);
+
     }
+
     if (isset($_POST['Modifier'])){
         $tab = array(
         "iduser"=>$_POST['iduser'],

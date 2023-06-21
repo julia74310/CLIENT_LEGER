@@ -142,6 +142,9 @@
                 case 11:
                     require_once("ventes.php");
                 break;
+                case 12:
+                    require_once("vues/vue_search_partenaire.php");
+                break;
             }
         ?>
         </section>

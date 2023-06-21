@@ -44,6 +44,10 @@ class Controleur{
     public function selectUser($email, $mdp){
 		return $this->unModele->selectUser($email, $mdp);
 	}
+
+    public function selectPartenaire($nom){
+		return $this->unModele->selectPartenaire($nom);
+	}
 }
 
 ?>

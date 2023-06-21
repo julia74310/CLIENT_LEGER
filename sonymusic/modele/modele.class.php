@@ -141,7 +141,7 @@
             $proc->execute($donnees);
            
         }
-        public	function selectUser($email, $mdp){
+        public function selectUser($email, $mdp){
             $requete="select * from user where email='".$email."' and mdp='".$mdp."';";
             if($this->unPDO !=null)
               {
@@ -155,7 +155,21 @@
               }
           }
 
-        
+          public function selectPartenaire($nom){
+            $requete="select * from user where nom like '".$nom."%' and role='partenaire' ;";
+            if($this->unPDO !=null)
+              {
+                $select=$this->unPDO->prepare($requete);  
+                  $select->execute();
+                  //extraction de toutes les Users
+                  return $select->fetchAll();
+              }else
+              {
+                  return null;
+              }
+          }
+
+    
     }
     ?>
 
